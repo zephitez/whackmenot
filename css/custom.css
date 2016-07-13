@@ -1,0 +1,110 @@
+/* Shared
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+body {
+  background-image: url("/images/road-5.jpg");
+  background-size: cover;
+}
+
+.button {
+  border-radius: 100px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h3 {
+  text-align: left;
+}
+
+.section {
+  padding: 4rem 0 2rem;
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  text-align: center;
+  background-color: rgba(126, 158, 232, 0.3);
+  margin-bottom: 10rem;
+  margin-top:3rem;
+  border-radius: 3rem;
+}
+/* CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.gorditas {
+  font-family: 'Gorditas';
+}
+
+.player-score {
+  font-weight: bold;
+}
+
+.initial-btn {
+  font-size: 22px;
+  /*color: #FAFAFA;
+  border-color: #FAFAFA;*/
+  color: black;
+  border-color: #302F4D;
+  height: 60px;
+  padding: 0 30px;
+  line-height: 60px;
+  margin-right: 2rem;
+}
+
+.input {
+  background-color: #BCED09;
+  width: 30.6666666667%;
+  display: inline-block;
+  border-radius: 4.5rem;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  margin: 1%;
+}
+
+.input:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.game {
+  background-color: grey;
+  background-color: #302F4D;
+  margin: 2rem auto;
+  border-radius: 5rem;
+  padding: 1rem;
+  font-size: 0;
+  width: 80%;
+}
+
+#remarks {
+  background-color: #E2E1DC;
+  padding-bottom: 10rem;
+}
+
+#instruction-title {
+  font-weight: bold;
+}
+
+.bird-small {
+  width: 60px;
+}
+
+.pig-small {
+  width: 45px;
+}
+
+#countdown-timer {
+  display:inline;
+}
+
+#box1 {
+  width: 80%;
+  position: absolute;
+  margin-left: -40%;
+  margin-top: 10%;
+}
