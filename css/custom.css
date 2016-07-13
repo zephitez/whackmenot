@@ -36,6 +36,7 @@ h3 {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .gorditas {
   font-family: 'Gorditas';
+  font-weight: bold;
 }
 
 .player-score {
@@ -81,21 +82,18 @@ h3 {
   width: 80%;
 }
 
-#remarks {
+#messagebox {
   background-color: #E2E1DC;
-  padding-bottom: 10rem;
-}
-
-#instruction-title {
-  font-weight: bold;
 }
 
 .bird-small {
   width: 60px;
+  margin-left: 5px;
 }
 
 .pig-small {
   width: 45px;
+  margin-left: 5px;
 }
 
 #countdown-timer {
@@ -107,4 +105,8 @@ h3 {
   position: absolute;
   margin-left: -40%;
   margin-top: 10%;
+}
+
+span {
+  font-weight: bold;
 }
