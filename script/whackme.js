@@ -38,9 +38,6 @@ $(document).ready(function() {
       // this one adds an event listener to the click start button -> when it is clicked, it initialise game
       this.$clickStart.click(this.initGame.bind(this));
 
-      // adding keypress event listener to all answers -> when key is pressed, it updates score
-      $(document).keypress(this.updateScore.bind(this));
-
       // adding click event listener --> it calls the restart function
       this.$clickRestart.click(this.restart.bind(this));
     },
@@ -56,6 +53,8 @@ $(document).ready(function() {
       //set Timers
       this.setTimerInterval();
       this.setPopUpInterval();
+      // adding keypress event listener to all answers -> when key is pressed, it updates score
+      $(document).keypress(this.updateScore.bind(this));
     },
 
     //insert image
