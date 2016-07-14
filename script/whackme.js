@@ -13,7 +13,7 @@ $(document).ready(function() {
     this.randomPopInterval = 0;
     this.player1Score = 0;
     this.player2Score = 0;
-    this.timer = 30;
+    this.timer = 25;
     this.countdownTimerId = 0;
     this.popUpTimerId = 0;
     this.popDownTimerId = 0;
@@ -98,8 +98,6 @@ $(document).ready(function() {
 
     //update score and display wrong or right message
     updateScore: function(event) {
-
-
       if (this.isGameOver()) {
         this.whoWon();
       } else {
@@ -140,6 +138,7 @@ $(document).ready(function() {
               this.popImageDown();
               this.setMsg(this.$player2, this.player2Score);
               this.setMsg(this.$response, this.wrongAnsMsg[4]);
+              console.log('this.wrongAnsMsg[4]');
             } else {
               this.player2Score--;
               this.setMsg(this.$player2, this.player2Score);
@@ -195,20 +194,22 @@ winLoseAudio: function(x) {
     //restarts the game
     restart: function() {
       this.clearIntervalOfId(this.countdownTimerId);
-      this.timer = 30;
+      this.timer = 25;
       this.$clickStart.show();
       this.$instruction.show();
-      this.setMsg(this.timerDisplay, 'Countdown \: ' + this.timer);
-      this.happyfeetAudio.load();
-      this.clearIntervalOfId(this.popDownTimerId);
-      this.clearIntervalOfId(this.popUpTimerId);
       this.popImageDown();
       this.winAudio.load();
       this.loseAudio.load();
+      this.happyfeetAudio.load();
       this.player1Score = 0;
       this.player2Score = 0;
       this.setMsg(this.$player1, this.player1Score);
       this.setMsg(this.$player2, this.player2Score);
+      this.setMsg(this.$response, 'How to Play');
+      this.setMsg(this.timerDisplay, 'Countdown \: ' + this.timer);
+      this.clearIntervalOfId(this.popDownTimerId);
+      this.clearIntervalOfId(this.popUpTimerId);
+      $(document).keypress(this.updateScore.bind(this)).off();
     }
   };
 
