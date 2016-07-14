@@ -111,15 +111,17 @@ $(document).ready(function() {
         switch (event.which) {
           case 97:
             if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
               this.player1Score += 3;
               this.setMsg(this.$player1, this.player1Score);
               this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
-              this.winLoseAudio('win');
             } else if (this.$popImageBox.attr('src') == this.image[1]) {
+              this.winLoseAudio();
+              this.popImageDown();
               this.player1Score -= 2;
               this.setMsg(this.$player1, this.player1Score);
               this.setMsg(this.$response, this.wrongAnsMsg[4]);
-              this.winLoseAudio();
             } else {
               this.player1Score--;
               this.setMsg(this.$player1, this.player1Score);
@@ -128,15 +130,17 @@ $(document).ready(function() {
             break;
           case 108:
             if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
               this.player2Score += 3;
               this.setMsg(this.$player2, this.player2Score);
               this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
-              this.winLoseAudio('win');
             } else if (this.$popImageBox.attr('src') == this.image[1]) {
               this.player2Score -= 2;
+              this.winLoseAudio();
+              this.popImageDown();
               this.setMsg(this.$player2, this.player2Score);
               this.setMsg(this.$response, this.wrongAnsMsg[4]);
-              this.winLoseAudio();
             } else {
               this.player2Score--;
               this.setMsg(this.$player2, this.player2Score);
@@ -146,10 +150,9 @@ $(document).ready(function() {
         }
       }
     },
-
+//play winlose audio
 winLoseAudio: function(x) {
   if (x == 'win') {
-    console.log(x);
     this.loseAudio.pause();
     this.winAudio.load();
     this.winAudio.play();
@@ -164,7 +167,6 @@ winLoseAudio: function(x) {
     whoWon: function() {
       if (this.player1Score > this.player2Score) {
         this.setMsg(this.$response, this.player1 + ' ' + this.playerWinMsg);
-
       } else if (this.player1Score < this.player2Score) {
         this.setMsg(this.$response, this.player2 + ' ' + this.playerWinMsg);
       } else {
@@ -198,7 +200,7 @@ winLoseAudio: function(x) {
       this.$clickStart.show();
       this.$instruction.show();
       this.setMsg(this.timerDisplay, 'Countdown \: ' + this.timer);
-      this.happyfeetAudio.pause();
+      this.happyfeetAudio.load();
       this.clearIntervalOfId(this.popDownTimerId);
       this.clearIntervalOfId(this.popUpTimerId);
       this.popImageDown();
