@@ -1,7 +1,7 @@
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 body {
-  background-image: url("images/road-5.jpg");
+  background-image: url("./images/road-5.jpg");
   background-size: cover;
 }
 
