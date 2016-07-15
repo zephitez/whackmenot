@@ -28,7 +28,7 @@ $(document).ready(function() {
     this.$popImageBox = $('#box1');
     this.$player1 = $('#player1');
     this.$player2 = $('#player2');
-
+    this.$touchBtn = $('.touch-btn');
   }
 
   Game.prototype = {
@@ -55,6 +55,8 @@ $(document).ready(function() {
       this.setPopUpInterval();
       // adding keypress event listener to all answers -> when key is pressed, it updates score
       $(document).keypress(this.updateScore.bind(this));
+      this.$touchBtn.click(this.updateScore.bind(this));
+
     },
 
     //insert image
@@ -145,6 +147,49 @@ $(document).ready(function() {
               this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
             }
             break;
+        }
+          console.log(event.target.id);
+        switch (event.target.id) {
+          case 'p1':
+            if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
+              this.player1Score += 3;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
+            } else if (this.$popImageBox.attr('src') == this.image[1]) {
+              this.winLoseAudio();
+              this.popImageDown();
+              this.player1Score -= 2;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[4]);
+            } else {
+              this.player1Score--;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
+            }
+            break;
+          case 'p2':
+            if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
+              this.player2Score += 3;
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
+            } else if (this.$popImageBox.attr('src') == this.image[1]) {
+              this.player2Score -= 2;
+              this.winLoseAudio();
+              this.popImageDown();
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[4]);
+              console.log('this.wrongAnsMsg[4]');
+            } else {
+              this.player2Score--;
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
+            }
+            break;
+
         }
       }
     },
