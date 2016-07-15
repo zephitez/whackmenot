@@ -55,7 +55,6 @@ $(document).ready(function() {
       this.setPopUpInterval();
       // adding keypress event listener to all answers -> when key is pressed, it updates score
       $(document).keypress(this.updateScore.bind(this));
-
     },
 
     //insert image
@@ -97,7 +96,7 @@ $(document).ready(function() {
       this.popDownTimerId = window.setInterval(this.popImageDown.bind(this), this.randomPopInterval);
     },
 
-    //update score and display wrong or right message --> on keyboard
+    //update score and display wrong or right message
     updateScore: function(event) {
       if (this.isGameOver()) {
         this.whoWon();
@@ -108,54 +107,59 @@ $(document).ready(function() {
         //update score for player 1 and 2
         switch (event.which) {
           case 97:
-            this.winningLogic('this.$player1', 'this.player1Score');
+            if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
+              this.player1Score += 3;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
+            } else if (this.$popImageBox.attr('src') == this.image[1]) {
+              this.winLoseAudio();
+              this.popImageDown();
+              this.player1Score -= 2;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[4]);
+            } else {
+              this.player1Score--;
+              this.setMsg(this.$player1, this.player1Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
+            }
             break;
-
           case 108:
-              this.winningLogic(this.$player2, this.player2Score);
+            if (this.$popImageBox.attr('src') == this.image[0]) {
+              this.winLoseAudio('win');
+              this.popImageDown();
+              this.player2Score += 3;
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
+            } else if (this.$popImageBox.attr('src') == this.image[1]) {
+              this.player2Score -= 2;
+              this.winLoseAudio();
+              this.popImageDown();
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[4]);
+              console.log('this.wrongAnsMsg[4]');
+            } else {
+              this.player2Score--;
+              this.setMsg(this.$player2, this.player2Score);
+              this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
+            }
             break;
         }
       }
     },
-
-//determine who gets points
-winningLogic: function(x, y) {
-  console.log(this.player1Score);
-  if (this.$popImageBox.attr('src') == this.image[0]) {
-    this.winLoseAudio('win');
-    this.popImageDown();
-    console.log(this.player1Score);
-    y += 3;
-    this.setMsg(x, y);
-    this.setMsg(this.$response, this.rightAnsMsg[this.randomMsgNo]);
-  }// else if (this.$popImageBox.attr('src') == this.image[1]) {
-  //   y -= 2;
-  //   this.winLoseAudio();
-  //   this.popImageDown();
-  //   this.setMsg(x, y);
-  //   this.setMsg(this.$response, this.wrongAnsMsg[4]);
-  // } else {
-  //   y--;
-  //       console.log('test empty');
-  //       console.log(y);
-  //   this.setMsg(x, y);
-  //   this.setMsg(this.$response, this.wrongAnsMsg[this.randomMsgNo]);
-  // }
-},
-
-
-//play winlose audio
-winLoseAudio: function(x) {
-  if (x == 'win') {
-    this.loseAudio.pause();
-    this.winAudio.load();
-    this.winAudio.play();
-  } else {
-    this.winAudio.pause();
-    this.loseAudio.load();
-    this.loseAudio.play();
-  }
-},
+    //play winlose audio
+    winLoseAudio: function(x) {
+      if (x == 'win') {
+        this.loseAudio.pause();
+        this.winAudio.load();
+        this.winAudio.play();
+      } else {
+        this.winAudio.pause();
+        this.loseAudio.load();
+        this.loseAudio.play();
+      }
+    },
 
     // check winner
     whoWon: function() {
