@@ -75,8 +75,9 @@ h3 {
 .touch-btn {
   border-radius: 100%;
   padding: 0;
-  width: 17%;
+  width: 20%;
   background-color: #33A1FD;
+  margin: 0 2rem;
   /*display: none;*/
 }
 
